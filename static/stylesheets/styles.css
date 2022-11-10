@@ -1,0 +1,29 @@
+#collapse0{
+overflow-y:scroll;
+height:200px;
+}
+#collapse1
+{
+overflow-y:scroll;
+height:200px;
+}
+#collapse2
+{
+overflow-y:scroll;
+height:200px;
+}
+
+.jumbotron {
+  background-color: #2F283D ; /* Orange #f4511e */
+  color: #00DEA5; /*#ffffff;*/
+
+}
+h2,h5,h3
+{
+	color: #00DEA5
+}
+p{
+	color: #00DEA5
+}
+
+body{ background-color: #2F283D;}

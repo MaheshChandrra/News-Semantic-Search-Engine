@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/stylesheets/style.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body style="background-color: white">
+
+  <div class="jumbotron text-center" style="background-color: white;color: black">
+  <!-- <img src="{{ url_for('static', filename='img/global_data_logo.PNG') }}"alt="GlobalData" class="center"> -->
+  <h3 class="text-center">News Semantic Search - CMPE 272</h3>
+
+  <form class="form-inline" method="post" action="{{url_for('similarnews')}}">
+<div class="input-group">
+    <input type="text" name="input_news" size="50"  class="form-control" placeholder="Enter news..." required/>
+    <span class="input-group-addon">Top </span>
+    <input type="text" name="top" class="form-control" size="10" placeholder="ex:10" required/>
+          <div class="input-group-btn">
+        <button type="submit" class="btn btn-success">Get News</button>
+
+      </div>
+</div>
+  </form>
+  <br>
+
+  </div>
+</body>
+</html>
+
+
