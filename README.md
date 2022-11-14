@@ -12,4 +12,4 @@ To run the service run:
 
 To access application through query parameters:
 
-```http://ip/get_similar_news?input_title_and_body=food%20business&top=10```
+```http://[SYSTEMS IP]/get_similar_news?input_title_and_body=food%20business&top=10```
