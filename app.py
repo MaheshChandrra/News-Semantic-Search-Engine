@@ -49,13 +49,14 @@ def get_similar_news():
     try:
         response_json={}
         input_news = request.args.get('input_title_and_body')
-        top=request.args.get('top')
+        top=int(request.args.get('top'))
         print(input_news)
         print(top)
         print('#'*100)
         error='None'
         response_json['Similar_News']=get_similar_news_by_cs(input_news,top)
     except Exception as e:
+        print(e)
         return jsonify(input_news=input_news)
 
     return jsonify(input_news=input_news,error=error,Similar_News=response_json['Similar_News'])
@@ -94,7 +95,7 @@ def get_similar_news_by_cs(query,top):
     df_main=df_main[0:top]
     df_main=df_main[['link', 'headline', 'category', 'short_description', 'authors', 'date','headline_and_sd','Cosine Similarity']]
     df_main=df_main.rename(columns={'headline_and_sd': 'News'})
-    df_main=df_main[['headline_and_sd','Cosine Similarity']].to_json(orient='records')
+    df_main=df_main[['News','Cosine Similarity']].to_json(orient='records')
 
     
     ###Send JSON Results back
