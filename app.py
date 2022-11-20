@@ -14,7 +14,9 @@ import random
 from datetime import datetime
 import sys
 from flask import jsonify
-
+import gdown
+import app_config
+import os
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -124,8 +126,12 @@ if __name__ == "__main__":
     host= s.getsockname()[0]
     port=8080
 
-    df=pd.read_pickle("datasets/dataset_1_2.pkl")
+    ###Downloading the dataset from google drive
+    output = app_config.DATASET_PATH+app_config.DATSET_FILE_NAME
 
+    if not app_config.DATSET_FILE_NAME in os.listdir(app_config.DATASET_PATH):
+        gdown.download(app_config.DATASET_DRIVE_LINK, output, quiet=False)
+    df=pd.read_pickle(app_config.DATASET_PATH+app_config.DATSET_FILE_NAME)
 
     
     ###Loading Sentence Embedder
