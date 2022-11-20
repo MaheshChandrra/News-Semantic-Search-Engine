@@ -44,6 +44,12 @@ def similarnews():
 
 ###############################################################################################################
 
+@app.route('/contact_us', methods=['GET', 'POST'])
+def contact_us():
+    return render_template("contact_us.html")
+
+###############################################################################################################
+
 @app.route('/get_similar_news', methods=['GET', 'POST'])
 def get_similar_news():
     try:
@@ -95,7 +101,8 @@ def get_similar_news_by_cs(query,top):
     df_main=df_main[0:top]
     df_main=df_main[['link', 'headline', 'category', 'short_description', 'authors', 'date','headline_and_sd','Cosine Similarity']]
     df_main=df_main.rename(columns={'headline_and_sd': 'News'})
-    df_main=df_main[['News','Cosine Similarity']].to_json(orient='records')
+    #df_main=df_main[['News','Cosine Similarity']].to_json(orient='records')
+    df_main=df_main.to_json(orient='records')
 
     
     ###Send JSON Results back
@@ -117,7 +124,7 @@ if __name__ == "__main__":
     host= s.getsockname()[0]
     port=8080
 
-    df=pd.read_pickle("datasets/dataset_1.pkl")
+    df=pd.read_pickle("datasets/dataset_1_2.pkl")
 
 
     
