@@ -50,6 +50,10 @@ def similarnews():
 def contact_us():
     return render_template("contact_us.html")
 
+
+@app.route('/visualize_news', methods=['GET', 'POST'])
+def visualize_news():
+    return render_template("Sentence encode_30000_UMP.html")
 ###############################################################################################################
 
 @app.route('/get_similar_news', methods=['GET', 'POST'])
@@ -113,8 +117,6 @@ def get_similar_news_by_cs(query,top):
 
 ###############################################################################################################3
 
-
-
 if __name__ == "__main__":
     print("Inside main")
     hostname = socket.gethostname()
@@ -131,6 +133,8 @@ if __name__ == "__main__":
 
     if not app_config.DATSET_FILE_NAME in os.listdir(app_config.DATASET_PATH):
         gdown.download(app_config.DATASET_DRIVE_LINK, output, quiet=False)
+        # download_file_from_google_drive(app_config.GDRIVE_DATASET_ID, "datasets/news_data_with_embeddings.pkl")
+
     df=pd.read_pickle(app_config.DATASET_PATH+app_config.DATSET_FILE_NAME)
 
     
