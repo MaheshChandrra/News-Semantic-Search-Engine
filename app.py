@@ -43,6 +43,26 @@ def similarnews():
     except Exception as e:
         return jsonify(input_title_and_abstract=input_news,error=str(e))
 
+@app.route('/getnews', methods=['GET', 'POST'])
+def getnews():
+    try:
+        response_json={}
+        input_news = request.form["input_news"]
+        top=int(request.form["top"])
+        response_json['Similar_News']=get_similar_news_by_cs(input_news,top)
+        df_results = pd.read_json(response_json['Similar_News'])
+        html=""
+        tag=app_config.BOOTSTRAP_CARD_TAG
+        for i in range(0,len(df_results)):
+            html=html+tag.format(link=df_results["link"][i],
+                         headline=df_results["headline"][i],
+                         short_description=df_results["short_description"][i][0:500]+"...",
+                         date=str(df_results["date"][i]).split(" ")[0],
+                         closest_match=df_results["Cosine Similarity"][i]*100,
+                         formatted_link=df_results["link"][i].replace("https://www.",''))
+        return render_template("render_results.html",input_news=input_news,bootstrap_cards=html)
+    except Exception as e:
+        return jsonify(input_title_and_abstract=input_news,error=str(e))
 
 ###############################################################################################################
 
